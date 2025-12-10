@@ -1,1 +1,1 @@
-worker: python3 taro.py
+worker: python taro.py
