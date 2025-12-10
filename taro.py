@@ -2,7 +2,6 @@ import os
 import random
 import telebot
 
-# Прочитать токен из переменной окружения
 TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 
 if not TOKEN:
@@ -13,7 +12,6 @@ if not TOKEN:
 
 bot = telebot.TeleBot(TOKEN, parse_mode="HTML")
 
-# Lihtsad Taro-nõuanded
 TAROT_ADVICES = [
     {
         "name": "Narr",
@@ -85,7 +83,6 @@ HELP_TEXT = (
 
 
 def pick_tarot_advice() -> dict:
-    """Valib juhusliku Taro-nõuande."""
     return random.choice(TAROT_ADVICES)
 
 
@@ -118,7 +115,6 @@ def handle_question(message: telebot.types.Message):
     ]
 
     if user_text:
-        # Näitame inimese küsimust peegeldusena tagasi
         reply_parts.extend([
             "",
             f"💭 Sinu küsimus: <i>{user_text}</i>",
@@ -136,5 +132,4 @@ def handle_question(message: telebot.types.Message):
 
 
 if __name__ == "__main__":
-    # infinity_polling sobib lihtsaks hostimiseks Railway peal
     bot.infinity_polling(skip_pending=True, timeout=20, long_polling_timeout=20)
