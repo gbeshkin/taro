@@ -6,11 +6,17 @@ from aiogram import Bot, Dispatcher, F
 from aiogram.filters import Command
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton
 
+TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 
-BOT_TOKEN = os.getenv("BOT_TOKEN", "PASTE_YOUR_BOT_TOKEN_HERE")
+if not TOKEN:
+    raise RuntimeError(
+        "Puudub TELEGRAM_BOT_TOKEN keskkonnamuutuja. "
+        "Lisa see Railway seadetes (Variables)."
+    )
+
+bot = telebot.TeleBot(TOKEN, parse_mode="HTML")
 
 logging.basicConfig(level=logging.INFO)
-
 
 TAROT_CARDS = [
     {
